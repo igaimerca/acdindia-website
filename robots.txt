@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://acdindia.org/sitemap.xml
