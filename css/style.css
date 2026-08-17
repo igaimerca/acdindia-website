@@ -46,6 +46,7 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
   margin: 0;
@@ -67,6 +68,14 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+button,
+input,
+select,
+textarea,
+optgroup,
+option {
+  font-family: inherit;
 }
 h1,
 h2,
@@ -400,6 +409,8 @@ section {
   border: none;
   cursor: pointer;
   padding: 6px;
+  position: relative;
+  z-index: 210;
 }
 .hamburger span {
   width: 24px;
@@ -628,6 +639,8 @@ section {
 @media (max-width: 900px) {
   .torn-frame-wrap {
     height: auto;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
   }
   .hero-photo-frame {
     border-radius: var(--radius-lg);
@@ -1470,11 +1483,32 @@ section {
   font-style: italic;
   margin: 0;
 }
+.people-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.people-grid-4 .people-card:nth-child(2) .people-avatar {
+  background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+}
+.people-grid-4 .people-card:nth-child(3) .people-avatar {
+  background: linear-gradient(135deg, var(--pink), #8f2465);
+}
+.people-grid-4 .people-card:nth-child(4) .people-avatar {
+  background: linear-gradient(135deg, var(--green), #1f6b4a);
+}
 @media (max-width: 900px) {
   .people-grid {
     grid-template-columns: 1fr;
     max-width: 380px;
     margin: 0 auto;
+  }
+  .people-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 560px;
+  }
+}
+@media (max-width: 560px) {
+  .people-grid-4 {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2355,6 +2389,26 @@ section {
     right: 6px;
   }
 }
+.car-dots {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.car-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--line);
+  cursor: pointer;
+  transition: width 0.25s var(--ease), background 0.25s var(--ease);
+}
+.car-dots button.active {
+  width: 22px;
+  background: var(--amber);
+}
 @media (max-width: 900px) {
   .carousel-row {
     grid-template-columns: 1fr;
@@ -2364,6 +2418,9 @@ section {
   }
   .car-card {
     flex-basis: 78vw;
+  }
+  .car-dots {
+    display: flex;
   }
 }
 

@@ -62,7 +62,7 @@
     counters.forEach(function(el){ cio.observe(el); });
   }
 
-  /* Carousels (prev/next arrows, snap scroll) */
+  /* Carousels (prev/next arrows, snap scroll, mobile dot pagination) */
   document.querySelectorAll('.car-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
       var wrap = btn.closest('.carousel-wrap');
@@ -72,6 +72,43 @@
       var amount = card.getBoundingClientRect().width + 24;
       track.scrollBy({ left: btn.classList.contains('car-prev') ? -amount : amount, behavior: 'smooth' });
     });
+  });
+
+  document.querySelectorAll('.carousel-wrap').forEach(function(wrap){
+    var track = wrap.querySelector('.carousel');
+    var cards = wrap.querySelectorAll('.car-card');
+    if (!track || !cards.length) return;
+
+    var dotsEl = document.createElement('div');
+    dotsEl.className = 'car-dots';
+    cards.forEach(function(_, i){
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', function(){
+        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      });
+      dotsEl.appendChild(dot);
+    });
+    wrap.appendChild(dotsEl);
+    var dots = dotsEl.querySelectorAll('button');
+
+    var ticking = false;
+    track.addEventListener('scroll', function(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){
+        var trackLeft = track.getBoundingClientRect().left;
+        var nearest = 0, best = Infinity;
+        cards.forEach(function(card, i){
+          var d = Math.abs(card.getBoundingClientRect().left - trackLeft);
+          if (d < best){ best = d; nearest = i; }
+        });
+        dots.forEach(function(d, i){ d.classList.toggle('active', i === nearest); });
+        ticking = false;
+      });
+    }, { passive: true });
   });
 
   /* Back to top */
