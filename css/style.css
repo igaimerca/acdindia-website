@@ -22,6 +22,7 @@
   --paper-warm: #fff7e6;
   --line: #eae1cc;
   --white: #ffffff;
+  --white-dark: #f1f0f0;
 
   --font-display: "Rubik", sans-serif;
   --font-body: "Rubik", sans-serif;
@@ -196,6 +197,16 @@ section {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
+.btn-white {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.btn-white:hover {
+  background: var(--white-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
 .btn-block {
   width: 100%;
   justify-content: center;
@@ -228,6 +239,10 @@ section {
 .eyebrow.green {
   background: #e1f3ea;
   color: var(--green);
+}
+.eyebrow.pink {
+  background: #fbe3ee;
+  color: var(--pink);
 }
 
 /* =========================================================
@@ -864,6 +879,15 @@ section {
 .p-card:nth-child(6) {
   border-bottom-color: var(--teal);
 }
+.p-card:nth-child(7) {
+  border-bottom-color: var(--green);
+}
+.p-card:nth-child(8) {
+  border-bottom-color: var(--pink);
+}
+.p-card:nth-child(9) {
+  border-bottom-color: var(--amber);
+}
 .p-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-md);
@@ -1398,6 +1422,37 @@ section {
   box-shadow: var(--shadow-sm);
 }
 
+/* ---------- Program callout (partnership highlight, left-accent card) ---------- */
+.program-callout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--paper-warm);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius-md);
+  padding: 22px 26px;
+  margin: 24px 0;
+}
+.program-callout .ic {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--amber-light);
+  color: var(--amber-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.program-callout h4 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.program-callout p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 /* ---------- Timeline (approach levels, list style) ---------- */
 .level-grid {
   display: grid;
@@ -1421,6 +1476,15 @@ section {
 }
 .pillar-card:nth-child(3) .ic {
   color: var(--green);
+}
+.pillar-card:nth-child(4) .ic {
+  color: var(--pink);
+}
+.pillar-card:nth-child(5) .ic {
+  color: var(--amber-dark);
+}
+.pillar-card:nth-child(6) .ic {
+  color: var(--teal-dark);
 }
 .level-card h4 {
   font-size: 1rem;
@@ -2273,6 +2337,15 @@ section {
 .pillar-card:nth-child(3) {
   border-top-color: var(--green);
 }
+.pillar-card:nth-child(4) {
+  border-top-color: var(--pink);
+}
+.pillar-card:nth-child(5) {
+  border-top-color: var(--amber);
+}
+.pillar-card:nth-child(6) {
+  border-top-color: var(--teal);
+}
 .pillar-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
@@ -2403,7 +2476,9 @@ section {
   border-radius: 999px;
   background: var(--line);
   cursor: pointer;
-  transition: width 0.25s var(--ease), background 0.25s var(--ease);
+  transition:
+    width 0.25s var(--ease),
+    background 0.25s var(--ease);
 }
 .car-dots button.active {
   width: 22px;
