@@ -1,4 +1,4 @@
-// ACD — shared site behaviour (no dependencies, no build step)
+// ACD - shared site behaviour (no dependencies, no build step)
 (function(){
   "use strict";
 
@@ -62,6 +62,18 @@
     counters.forEach(function(el){ cio.observe(el); });
   }
 
+  /* Carousels (prev/next arrows, snap scroll) */
+  document.querySelectorAll('.car-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var wrap = btn.closest('.carousel-wrap');
+      var track = wrap && wrap.querySelector('.carousel');
+      var card = wrap && wrap.querySelector('.car-card');
+      if (!track || !card) return;
+      var amount = card.getBoundingClientRect().width + 24;
+      track.scrollBy({ left: btn.classList.contains('car-prev') ? -amount : amount, behavior: 'smooth' });
+    });
+  });
+
   /* Back to top */
   var backToTop = document.getElementById('backToTop');
   if (backToTop){
@@ -102,7 +114,7 @@
     });
   }
 
-  /* Lightbox: next/prev, zoom, keyboard, swipe — used by any [data-lightbox] group */
+  /* Lightbox: next/prev, zoom, keyboard, swipe - used by any [data-lightbox] group */
   var lbGroups = {};
   document.querySelectorAll('[data-lightbox]').forEach(function(el, i){
     var group = el.getAttribute('data-lightbox') || 'default';
